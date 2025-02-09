@@ -54,6 +54,6 @@ A self-hosted home lab using Proxmox for virtualization, WireGuard for secure re
        │            (Connecting VMs to Firewall)          │
        └──────────────────────────────────────────────────┘
                                │
-┌─────────────────────────────────────────────────────────────────────────┐
-  [ Web Server ]  [ UptimeManager ]  [AdBlocker]  [ VPN Server ]  [ NAS ]
+   ┌──────────────────────────────────────────────────────────┐
+     [ UptimeManager ]  [AdBlocker]  [ VPN Server ]  [ NAS ]
 ```
