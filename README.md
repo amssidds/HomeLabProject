@@ -10,20 +10,19 @@ A self-hosted home lab using Proxmox for virtualization, WireGuard for secure re
 ```
 /
 ├── Documentation/
-│   ├── 1. Proxmox Install.pdf
-│   ├── 2. Creating Linux Bridge.pdf
-│   ├── 3. VPN Server (WireGuard).pdf
-│   ├── 4. NAS (OpenMediaVault).pdf
-│   ├── 5. Uptime Manager (UptimeKuma).pdf
-│   ├── 6. ADBlocker (PiHole).pdf
+│   ├── 1. Proxmox Install
+│   ├── 2. Creating Linux Bridge
+│   ├── 3. VPN Server (WireGuard)
+│   ├── 4. NAS (OpenMediaVault)
+│   ├── 5. Uptime Manager (UptimeKuma)
+│   ├── 6. ADBlocker (PiHole)
 ├── Additional Notes/
-│   ├── Topology.pdf
-│   ├── Adding a VM on Proxmox.pdf
-│   ├── Adding a LXC Container.pdf
-│   ├── Adding USB_Storage to Proxmox.pdf
-│   ├── Adding HDDs directly to NAS.pdf
-│   ├── Why FQDN is used than IP.pdf
-│   ├── Creating DDNS.pdf
+│   ├── Adding a VM on Proxmox
+│   ├── Adding a LXC Container
+│   ├── Adding USB_Storage to Proxmox
+│   ├── Adding HDDs directly to NAS
+│   ├── Why FQDN is used than IP
+│   ├── Creating DDNS
 ```
 
 ## Setup Summary
@@ -33,8 +32,30 @@ A self-hosted home lab using Proxmox for virtualization, WireGuard for secure re
 4. **Uptime Kuma** for monitoring, **PiHole** for ad-blocking.
 5. **pfSense firewall** configured for network security and traffic filtering.
 
-## How to Use
-- **Documentation/**: Step-by-step setup guides.
-- **Additional Notes/**: Extra resources and configurations.
+## Toplogy 
+```
+                           Internet
+                               │
+                        [ ISP Router ]
+                         (192.168.1.1)
+                               │
+       ┌─────────────────────────────────────────────────┐
+       │          Proxmox Virtual Network (`vmbr0`)      │
+       │             (Connecting to Firewall)            │
+       └─────────────────────────────────────────────────┘ 
+                               │
+               ┌──────────────WAN──────────────┐
+               │     Firewall VM (OPNsense)    |
+               │         (192.168.2.1)         |
+               └──────────────LAN──────────────┘
+                               │
+       ┌──────────────────────────────────────────────────┐
+       │          Proxmox Virtual Network (`vmbr1`)       │
+       │            (Connecting VMs to Firewall)          │
+       └──────────────────────────────────────────────────┘
+                               │
+    ┌─────────────────────────────────────────────────────────────────┐
+      [ Web Server ]    [ Honeypots ]    [ VPN Server ]    [ NAS ]
+      (192.168.2.10)   (192.168.2.20)   (192.168.2.30)  (192.168.2.40)
 
-🚀 **This project is a work in progress. Updates will follow.**
+```
